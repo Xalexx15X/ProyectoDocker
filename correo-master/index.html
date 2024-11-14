@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario de Productos</title>
+</head>
+<body>
+    <h1>Inventario de Productos</h1>
+    <button onclick="fetchProductos()">Mostrar Productos</button>
+    <ul id="productos-list"></ul>
+
+    <h2>Agregar Producto</h2>
+    <form onsubmit="agregarProducto(event)">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="number" id="precio" placeholder="Precio" required step="0.01">
+        <button type="submit">Agregar</button>
+    </form>
+</body>
+</html>

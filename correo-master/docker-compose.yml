@@ -1,26 +1,26 @@
-version: '3.8'
+version: '2.29.2'
 
 services:
-  app:
+  front:
     build:
-      context: .
+      context: ./front
     ports:
-      - "8080:80"
+      - "8081:80"  # Puerto para el frontend
     depends_on:
       - db
-      - mailhog
+      - back
 
   db:
     build:
       context: ./db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: correos
+      MYSQL_DATABASE: proyectodocker
     ports:
-      - "3306:3306"
-    
-  mailhog:
+      - "3306:3306"  # Puerto para el backend
+
+  back:
     build:
-      context: ./mailhog
-    ports:
-      - "8025:8025"
+      context: ./back
+    depends_on:
+      - db  # Cambiar a 8081 para evitar conflicto

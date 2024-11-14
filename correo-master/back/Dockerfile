@@ -5,7 +5,6 @@ FROM php:8.1-apache
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Copiar el código de la aplicación
-COPY . /var/www/html/
+COPY ./ /var/www/html/
 
-# Establecer permisos
-RUN chown -R www-data:www-data /var/www/html
+
