@@ -30,18 +30,18 @@ correo-master/
 
 ## Instalación y Ejecución
 
-Para levantar todos los servicios (frontend, backend y base de datos), solo necesitas ejecutar el siguiente comando:
+Para levantar todos los servicios (frontend, backend y base de datos), solo necesitamos ejecutar el siguiente comando:
 
 docker-compose up --build
 
 Explicación del Comando: 
 docker-compose up: Inicia todos los contenedores definidos en el archivo docker-compose.yml.
 --build: Fuerza la reconstrucción de las imágenes de los contenedores antes de iniciar los servicios, asegurando que cualquier cambio en los Dockerfile se aplique.
-Esto construirá y arrancará los siguientes servicios:
+Esto construira y arrancara los siguientes servicios:
 
-Frontend (UI): un index que se encuentra en el puerto 8081 donde puedes ver y agregar productos.
-Backend (API PHP): Un servidor PHP que maneja la lógica de negocio para gestionar los productos. Se conecta a la base de datos MySQL.
-Base de datos (MySQL): Se ejecuta una base de datos MySQL que se usa para almacenar los productos.
+Frontend: un index que se encuentra en el puerto 8081 donde puedes ver y agregar productos.
+Backend: Un servidor PHP que maneja la logica para gestionar los productos. Se conecta a la base de datos MySQL.
+Base de datos: Se ejecuta una base de datos MySQL que se usa para almacenar los productos.
 
 ## Acceso a la Aplicación
 Una vez que los contenedores estén en funcionamiento se podra hacer una petición a la API para obtener los productos y a la UI para agregar productos.
@@ -86,6 +86,7 @@ ENV MYSQL_ROOT_PASSWORD=root
 ENV MYSQL_DATABASE=proyectodocker
 
 ##### Copiar el script de inicialización de la base de datos
-COPY ./init.sql /docker-entrypoint-initdb.d/    
+COPY ./init.sql /docker-entrypoint-initdb.d/  
+  
 
 
