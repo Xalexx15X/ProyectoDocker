@@ -58,34 +58,34 @@ docker-compose down
 
 ### Frontend
 
-# Usar una imagen ligera de Alpine con PHP
+##### Usar una imagen ligera de Alpine con PHP
 FROM alpine:latest
 
-# Crear el directorio donde se almacenarán los archivos estáticos
+##### Crear el directorio donde se almacenarán los archivos estáticos
 WORKDIR /var/www/html
 
-# Copiar el código del frontend
+##### Copiar el código del frontend
 COPY ./ /var/www/html/
 
 ### Backend
-# Usar la imagen base de PHP con Apache
+##### Usar la imagen base de PHP con Apache
 FROM php:8.1-apache
 
-# Instalar las extensiones necesarias para conectarse a MySQL
+##### Instalar las extensiones necesarias para conectarse a MySQL
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Copiar el código del backend (API)
+##### Copiar el código del backend (API)
 COPY ./ /var/www/html/
 
 ### Base de Datos
-# Usar la imagen base de MySQL
+#### Usar la imagen base de MySQL
 FROM mysql:5.7
 
-# Establecer variables de entorno
+##### Establecer variables de entorno
 ENV MYSQL_ROOT_PASSWORD=root
 ENV MYSQL_DATABASE=proyectodocker
 
-# Copiar el script de inicialización de la base de datos
+##### Copiar el script de inicialización de la base de datos
 COPY ./init.sql /docker-entrypoint-initdb.d/    
 
 
