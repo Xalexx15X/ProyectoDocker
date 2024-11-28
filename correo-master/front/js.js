@@ -1,9 +1,13 @@
-
-const apiUrl = 'http://localhost/ProyectoDokerApi/correo-master/back/api.php';
+const apiUrl = 'http://localhost:81/back/api.php';
 
 function fetchProductos() {
     fetch(apiUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             const lista = document.getElementById('productos-list');
             lista.innerHTML = '';
@@ -12,6 +16,9 @@ function fetchProductos() {
                 item.textContent = `${producto.nombre} - $${producto.precio}`;
                 lista.appendChild(item);
             });
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
         });
 }
 
@@ -23,11 +30,19 @@ function agregarProducto(event) {
     fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, precio})
+        body: JSON.stringify({ nombre, precio })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         alert(data.status || data.error);
         fetchProductos(); // Refrescar la lista de productos
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
     });
 }

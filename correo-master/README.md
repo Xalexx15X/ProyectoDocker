@@ -8,7 +8,8 @@ Estructura del Proyecto:
 correo-master/
 │
 ├── front/                    # Frontend con HTML y JavaScript
-│   ├── Dockerfile             # Dockerfile para construir la imagen del frontend
+│   ├── Dockerfile            # Dockerfile para construir la imagen del frontend
+│   ├── index.html            # Página de inicio con botón para mostrar productos y agregar productos
 │   └── js.js                 # Código JavaScript para consumir la API
 │
 ├── back/                     # Backend PHP
@@ -18,8 +19,7 @@ correo-master/
 ├── db/                       # Base de datos MySQL
 │   ├── init.sql              # Script SQL para inicializar la base de datos
 │   └── Dockerfile            # Dockerfile para crear la imagen de MySQL
-│             
-├── index.html                # Página de inicio con botón para mostrar productos
+│                             # Página de inicio con botón para mostrar productos
 ├── docker-compose.yml        # Configuración de los contenedores Docker
 └── README.md                 # Documentación del proyecto
 
@@ -32,7 +32,7 @@ correo-master/
 
 Para levantar todos los servicios (frontend, backend y base de datos), solo necesitamos ejecutar el siguiente comando:
 
-docker-compose up --build
+docker-compose up -d
 
 Explicación del Comando: 
 docker-compose up: Inicia todos los contenedores definidos en el archivo docker-compose.yml.
@@ -58,8 +58,8 @@ docker-compose down
 
 ### Frontend
 
-##### Usar una imagen ligera de Alpine con PHP
-FROM alpine:latest
+##### Usar una imagen de Apache 
+FROM php:8.1-apache
 
 ##### Crear el directorio donde se almacenarán los archivos estáticos
 WORKDIR /var/www/html

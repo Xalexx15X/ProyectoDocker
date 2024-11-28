@@ -10,14 +10,12 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        // Obtener todos los productos
-        $stmt = $conn->query("SELECT * FROM productos");
+        $stmt = $conn->query("SELECT * FROM kebab");
         $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($productos);
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Crear un nuevo producto
         $input = json_decode(file_get_contents('php://input'), true);
-        $stmt = $conn->prepare("INSERT INTO kebab (nombre, precio, stock) VALUES (:nombre, :precio)");
+        $stmt = $conn->prepare("INSERT INTO kebab (nombre, precio) VALUES (:nombre, :precio)");
         $stmt->bindParam(':nombre', $input['nombre']);
         $stmt->bindParam(':precio', $input['precio']);
        

@@ -1,9 +1,13 @@
-# Usar la imagen base de PHP con Apache
-FROM alpine:latest
+FROM php:8.1-apache
 
-# Crear el directorio donde se almacenara los archivos estaticos
-WORKDIR /var/www/html
+# Activar mod_rewrite para URLs amigables (si lo necesitas)
+RUN a2enmod rewrite
 
-# Copiar el código de la aplicación
+# Configurar Apache para escuchar en el puerto 81
+RUN echo "Listen 81" >> /etc/apache2/ports.conf
+
+# Copiar el código del frontend al directorio de Apache
 COPY ./ /var/www/html/
 
+# Exponer el puerto 81
+EXPOSE 81

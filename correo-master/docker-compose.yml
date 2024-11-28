@@ -1,11 +1,11 @@
-version: '2.29.2'
+version: '3.7'
 
 services:
   front:
     build:
       context: ./front
     ports:
-      - "8081:80"  # Puerto para el frontend
+      - "81:81"  # Puerto para el frontend
     depends_on:
       - db
       - back
@@ -17,10 +17,11 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: proyectodocker
     ports:
-      - "3306:3306"  # Puerto para el backend
+      - "3306:3306"
 
   back:
     build:
       context: ./back
     depends_on:
-      - db  # Cambiar a 8081 para evitar conflicto
+      - db
+
