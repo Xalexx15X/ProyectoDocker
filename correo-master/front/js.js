@@ -1,28 +1,28 @@
-const apiUrl = 'http://localhost:81/back/api.php';
+const apiUrl = 'http://localhost:81/correo-master/back/api.php';
 
-function fetchProductos() {
+function fetchKebabs() {
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Error en el servidor');
             }
             return response.json();
         })
         .then(data => {
-            const lista = document.getElementById('productos-list');
+            const lista = document.getElementById('kebab-list');
             lista.innerHTML = '';
-            data.forEach(producto => {
+            data.forEach(kebab => {
                 const item = document.createElement('li');
-                item.textContent = `${producto.nombre} - $${producto.precio}`;
+                item.textContent = `$kebab.nombre - $kebab.precio`;
                 lista.appendChild(item);
             });
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Error en la petición:', error);
         });
 }
 
-function agregarProducto(event) {
+function agregarKebabs(event) {
     event.preventDefault();
     const nombre = document.getElementById('nombre').value;
     const precio = document.getElementById('precio').value;
@@ -34,15 +34,15 @@ function agregarProducto(event) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('error del servidor');
         }
         return response.json();
     })
     .then(data => {
         alert(data.status || data.error);
-        fetchProductos(); // Refrescar la lista de productos
+        fetchKebabs(); // Refrescar la lista de productos
     })
     .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+        console.error('Error en la petición:', error);
     });
 }

@@ -6,11 +6,11 @@
 </head>
 <body>
     <h1>Inventario de Productos</h1>
-    <button onclick="fetchProductos()">Mostrar Productos</button>
-    <ul id="productos-list"></ul>
+    <button onclick="fetchKebabs()">Mostrar Productos</button>
+    <ul id="kebab-list"></ul>
 
-    <h2>Agregar Producto</h2>
-    <form onsubmit="agregarProducto(event)">
+    <h2>Agregar Un Kebab</h2>
+    <form onsubmit="agregarKebabs(event)">
         <input type="text" id="nombre" placeholder="Nombre" required>
         <input type="number" id="precio" placeholder="Precio" required step="0.01">
         <button type="submit">Agregar</button>
