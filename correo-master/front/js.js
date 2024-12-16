@@ -1,6 +1,6 @@
 const apiUrl = 'http://localhost:81/correo-master/back/api.php';
 
-function fetchKebabs() {
+function fetchProductos() {
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -9,20 +9,20 @@ function fetchKebabs() {
             return response.json();
         })
         .then(data => {
-            const lista = document.getElementById('kebab-list');
+            const lista = document.getElementById('productos-list');
             lista.innerHTML = '';
-            data.forEach(kebab => {
+            data.forEach(producto => {
                 const item = document.createElement('li');
-                item.textContent = `$kebab.nombre - $kebab.precio`;
+                item.textContent = `${producto.nombre} - €${producto.precio}`;
                 lista.appendChild(item);
             });
         })
         .catch(error => {
-            console.error('Error en la petición:', error);
+            console.error('Error en el fetch:', error);
         });
 }
 
-function agregarKebabs(event) {
+function agregarProducto(event) {
     event.preventDefault();
     const nombre = document.getElementById('nombre').value;
     const precio = document.getElementById('precio').value;
@@ -34,15 +34,15 @@ function agregarKebabs(event) {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('error del servidor');
+            throw new Error('Error en el servidor');
         }
         return response.json();
     })
     .then(data => {
         alert(data.status || data.error);
-        fetchKebabs(); // Refrescar la lista de productos
+        fetchProductos(); // Refrescar la lista de productos
     })
     .catch(error => {
-        console.error('Error en la petición:', error);
+        console.error('Error en el fetch:', error);
     });
 }

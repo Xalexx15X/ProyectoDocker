@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inventario de Productos</title>
+    <title>Inventario de Kebabs</title>
 </head>
 <body>
-    <h1>Inventario de Productos</h1>
-    <button onclick="fetchKebabs()">Mostrar Productos</button>
-    <ul id="kebab-list"></ul>
+    <h1>Inventario de Kebabs</h1>
+    <button onclick="fetchProductos()">Mostrar Productos</button>
+    <ul id="productos-list"></ul>
 
-    <h2>Agregar Un Kebab</h2>
-    <form onsubmit="agregarKebabs(event)">
+    <h2>Agregar Kebabs</h2>
+    <form onsubmit="agregarProducto(event)">
         <input type="text" id="nombre" placeholder="Nombre" required>
         <input type="number" id="precio" placeholder="Precio" required step="0.01">
         <button type="submit">Agregar</button>
