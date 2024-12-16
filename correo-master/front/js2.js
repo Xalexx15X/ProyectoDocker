@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:81/correo-master/back/api.php';
+const apiUrl = 'http://localhost:8000/api.php';
 
 function fetchProductos() {
     fetch(apiUrl)

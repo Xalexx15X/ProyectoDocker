@@ -9,7 +9,8 @@ services:
     depends_on:
       - db
       - back
-    
+    volumes:
+      - ./front:/usr/src/app  # Monta tu código local en el contenedor
 
   db:
     build:
@@ -23,6 +24,7 @@ services:
   back:
     build:
       context: ./back
+    ports:
+      - "8000:80"  # Puerto para el backend
     depends_on:
       - db
-
